@@ -36,13 +36,22 @@ def check_cmd(cmd: str):
 
 
 def install_packages():
-    for pkg in REQUIRED_PIP:
-        subprocess.call([sys.executable, '-m', 'pip', 'install', pkg])
+    """Install required Python packages in a single pip call."""
+    subprocess.check_call([
+        sys.executable, '-m', 'pip', 'install', '--upgrade', *REQUIRED_PIP
+    ])
 
 
 def clone_koboldcpp():
     if not KOBOLD_DIR.exists():
         subprocess.check_call(['git', 'clone', KOBOLD_REPO, str(KOBOLD_DIR)])
+
+
+def build_koboldcpp():
+    """Compile KoboldCpp if the executable does not exist."""
+    exe = KOBOLD_DIR / ('koboldcpp.exe' if sys.platform.startswith('win') else 'koboldcpp')
+    if not exe.exists():
+        subprocess.check_call(['make', '-j'], cwd=str(KOBOLD_DIR))
 
 
 def download_model():
@@ -89,6 +98,7 @@ def main():
         check_cmd(cmd)
     install_packages()
     clone_koboldcpp()
+    build_koboldcpp()
     download_model()
     create_shortcut()
 

@@ -55,6 +55,7 @@ class ChatWindow(QtWidgets.QMainWindow):
         # Input area
         input_layout = QtWidgets.QHBoxLayout()
         self.input_edit = QtWidgets.QLineEdit()
+        self.input_edit.returnPressed.connect(self.send_message)
         self.send_btn = QtWidgets.QPushButton('Send')
         self.send_btn.clicked.connect(self.send_message)
         input_layout.addWidget(self.input_edit)

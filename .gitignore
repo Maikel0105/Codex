@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.exe
+*.dll
+*.so
+*.dylib
+/llm/koboldcpp/
+/models/*.gguf
+/logs/
+/assets/
+characters/*.json

@@ -11,7 +11,7 @@ Roleplay Abyss is an offline desktop chatbot built with PyQt5 that connects to a
 - Chat logs stored in `/logs`
 
 ## Setup
-Run the setup script to install dependencies, download KoboldCpp and a GGUF model, then launch the GUI. The script also starts KoboldCpp in the background and shuts it down once you close the window. On Windows, the script also creates a desktop shortcut for easy launching:
+Run the setup script to install dependencies, clone and build KoboldCpp, download a GGUF model and then launch the GUI. The script also starts KoboldCpp in the background and shuts it down once you close the window. On Windows, a desktop shortcut is created for easy launching:
 
 ```bash
 python setup_env.py
