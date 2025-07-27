@@ -59,7 +59,12 @@ def start_koboldcpp() -> subprocess.Popen:
 
 
 def launch_gui():
+
+    """Launch the PyQt5 GUI as a module."""
+    subprocess.check_call([sys.executable, '-m', 'gui.app_gui'])
+
     subprocess.check_call([sys.executable, str(BASE_DIR / 'gui' / 'app_gui.py')])
+
 
 
 def main():
