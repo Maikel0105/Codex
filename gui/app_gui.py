@@ -125,12 +125,17 @@ class ChatWindow(QtWidgets.QMainWindow):
         self.append_chat(user_text, 'You')
         self.history.append({'role': 'user', 'content': user_text})
         self.input_edit.clear()
+
         prompt = self.build_prompt(user_text)
         reply = self.query_kobold(prompt)
+
+        reply = self.query_kobold(user_text)
+
         self.append_chat(reply, self.character.name)
         self.history.append({'role': 'assistant', 'content': reply})
         self.log_message('You', user_text)
         self.log_message(self.character.name, reply)
+
 
     def build_prompt(self, user_text: str) -> str:
         """Construct a prompt including memory and chat history."""
@@ -147,7 +152,11 @@ class ChatWindow(QtWidgets.QMainWindow):
             f.write(f"{speaker}: {text}\n")
 
     def query_kobold(self, prompt: str) -> str:
+
         """Send prompt string to KoboldCpp server"""
+
+        """Send prompt to KoboldCpp server"""
+
         payload = {
             'prompt': prompt,
             'max_new_tokens': 200,
